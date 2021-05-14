@@ -1,0 +1,20 @@
+---
+# tasks file for k8s_slave
+
+- name: "Fetching join cmd"
+  debug: 
+    msg: "{{ hostvars[inventory_hostname].groups.tag_Node_Master }}"
+  register: master_ip
+  
+- debug:
+    msg: "{{ hostvars[item].master_token.stdout_lines }}"
+  with_items:
+    - "{{ master_ip.msg }}"
+  register: join_cmd
+  ignore_errors: yes
+    
+
+- name: "Joining master"
+  command: "{{ item }}"
+  with_items:
+    - "{{ join_cmd.results[0].msg[0] }}"

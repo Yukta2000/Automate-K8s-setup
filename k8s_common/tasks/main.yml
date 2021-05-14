@@ -1,0 +1,59 @@
+---
+# tasks file for k8s_common
+- name: "Installing docker"
+  package:
+    name: "docker"
+    state: present
+      
+
+- name: Docker DriverChange
+  copy:
+    dest: "/etc/docker/daemon.json"
+    src: "daemon.json"  
+
+
+- name: "Starting docker services"
+  service:
+    name: "docker"
+    state: started
+    enabled: yes
+
+
+
+- name: "Configuring yum repo for k8s"
+  yum_repository:
+    baseurl: "{{ repo }}" 
+    name: "Kubernetes"
+    description: "Repository for k8s"
+    enabled: yes
+    gpgcheck: yes
+    repo_gpgcheck: yes
+    gpgkey: 
+      - "https://packages.cloud.google.com/yum/doc/yum-key.gpg" 
+      - "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
+        
+
+
+- name: "Installing kubelet kubeadm kubectl"
+  yum:
+    name: 
+      - kubelet
+      - kubeadm
+      - kubectl  
+    state: present      
+        
+
+      
+- name: "Enabling kubelet"
+  shell: "systemctl enable --now kubelet"
+  ignore_errors: yes
+ 
+
+- name: "Installing iproute-tc"
+  package:
+    name: "iproute-tc"
+    state: present
+  notify:
+  - Add
+  - sysctl
+

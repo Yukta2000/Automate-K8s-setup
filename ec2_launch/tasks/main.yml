@@ -1,0 +1,39 @@
+---
+# tasks file for ec2_launch
+
+- name: "Launching Master ec2 instance" 
+  ec2:
+    region: "{{ AWS_REGION }}"
+    key_name: "{{ AWS_MASTER_KEY_FILE }}"
+    instance_type: "t2.micro"
+    image: "{{ AWS_Image_ID }}"
+    vpc_subnet_id: "{{ AWS_SUBNET_ID }}"
+    group: "{{ AWS_SECURITY_GROUP_NAME }}"
+    instance_tags:
+      ClusType: "k8s"
+      Node: "Master"
+    count_tag:
+      ClusType: "k8s"
+      Node: "Master"
+    exact_count: "{{ MASTER_COUNT }}"
+    assign_public_ip: yes
+
+- name: "Launching Slave ec2 instance" 
+  ec2:
+    region: "{{ AWS_REGION }}"
+    key_name: "{{ AWS_SLAVE_KEY_FILE }}"
+    instance_type: "t2.micro"
+    image: "{{ AWS_Image_ID }}"
+    group: "{{ AWS_SECURITY_GROUP_NAME }}"
+    vpc_subnet_id: "{{ AWS_SUBNET_ID }}"
+    instance_tags:
+      ClusType: "k8s"
+      Node: "Slave"
+    count_tag:
+      ClusType: "k8s"
+      Node: "Slave"
+    exact_count: "{{ SLAVE_COUNT }}"
+    assign_public_ip: yes
+
+
+
