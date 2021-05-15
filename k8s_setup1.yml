@@ -33,7 +33,7 @@
   roles:
   - role: "k8s_slave"
 
-#Launching wordpress and mysql pods
+#Checking if nodes connected
 - hosts: tag_Node_Master
   vars_prompt:
     - name: SSH_KEY_PATH
