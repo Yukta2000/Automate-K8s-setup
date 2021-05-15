@@ -9,3 +9,5 @@
 ## To setup k8s cluster
 - First run **k8s_setup.yml** file using *ansible-playbook k8s_setup.yml*
 - Then run **k8s_setup1.yml** file using *ansible-playbook k8s_setup1.yml*
+
+## Blog link: https://yuktachakravarty.medium.com/automate-k8s-setup-using-ansible-over-ec2-2d141d4c0502
