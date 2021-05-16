@@ -10,4 +10,4 @@ We need to export AWS credentials such as Secret key and Access key using "expor
 
  ## Download files for ec2 dynamic inventory ec2.py, ec2.ini
 
-
+Sample Playbook: k8s_setup1.yml at https://github.com/Yukta2000/Automate-K8s-setup
