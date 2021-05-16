@@ -12,4 +12,39 @@ We need to export AWS credentials such as Secret key and Access key using "expor
 
 ### Download files for ec2 dynamic inventory ec2.py, ec2.ini
 
+**Sample Playbook**
+- hosts: localhost
+  vars_prompt:
+    - name: AWS_REGION
+      prompt: "Enter region:"
+      private: no
+      default: "us-east-1"
+    - name: AWS_MASTER_KEY_FILE
+      prompt: "Enter name of Master node SSH Key file:"
+      private: no
+    - name: AWS_SLAVE_KEY_FILE
+      prompt: "Enter name of  Slave node SSH Key file:"
+      private: no
+    - name: AWS_Image_ID
+      prompt: "Enter AMI ID of AMAZON LINUX IMAGE:"
+      private: no
+    - name: AWS_SUBNET_ID
+      prompt: "Enter SUBNET ID:"
+      private: no
+    - name: AWS_SECURITY_GROUP_NAME
+      prompt: "Enter Security Group Name:"
+      private: no
+    - name: MASTER_COUNT
+      prompt: "How many master nodes?"
+      private: no
+    - name: SLAVE_COUNT
+      prompt: "How many slave nodes?"
+      private: no
+       
+  roles:
+  - role: "ec2_launch"
+
+
+
+
 
