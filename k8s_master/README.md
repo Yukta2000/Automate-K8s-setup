@@ -10,6 +10,6 @@ We need to export AWS credentials such as Secret key and Access key using "expor
 
 **Run k8s_common role before using this role to do configurations needed before using this role**
 
-
+Sample Playbook: k8s_setup1.yml at https://github.com/Yukta2000/Automate-K8s-setup
 
    
