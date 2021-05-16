@@ -1,38 +1,15 @@
-Role Name
+ec2_launch
 =========
 
-A brief description of the role goes here.
+
+  -  ec2_launch role launches instances for Master node with tags ClusType:"k8s",Node:"Master" & Slave node with tags ClusType:"k8s",Node:"Master"
+  -  k8s_common,k8s_master,k8s_slave configure nodes based on this tags so
+
 
 Requirements
 ------------
+We need to export AWS credentials such as Secret key and Access key using "export AWS_ACCESS_KEY_ID='YOUR_AWS_API_KEY'" and "export AWS_SECRET_ACCESS_KEY='YOUR_AWS_API_SECRET_KEY'" for ec2 dynamic inventory
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+### Download files for ec2 dynamic inventory ec2.py, ec2.ini
 
-Role Variables
---------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
-
-Example Playbook
-----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
-
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
